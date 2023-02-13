@@ -14,19 +14,16 @@ public class Gato {
         this.nombre = nombre;
         this.edad = edad;
         this.dueno = dueno;
-        dormir();
-        comer();
-        jugar();
-
+    
     }
 
     public void dormir(){
-        System.out.println("Estoy durmiendo");
+        System.out.println("El gato " + this.nombre + " esta durmiendo");
 
     }
 
     public void comer(){
-        System.out.println("Estoy comiendo");
+        System.out.println("El gato de " + this.edad + " años de edad, esta comiendo");
 
     }
     
@@ -35,10 +32,10 @@ public class Gato {
 
     }
     public void correr(){
-        System.out.println("Estoy corriendo");
+        System.out.println("El gato esta corriendo con su dueño " + this.dueno);
 
     }
-
+    
 
 
 }
