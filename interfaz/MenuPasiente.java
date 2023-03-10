@@ -45,6 +45,7 @@ public class MenuPasiente extends JFrame {
         // super.setResizable(false);// no se pueda maximizar
         super.setSize(600, 600);
         super.setLocationRelativeTo(null);// posicion en el centro de la pantalla
+        super.setBackground(new Color(0x9DABAF));
         super.setVisible(true);
         /*
          * creacion de objetos necesarios
@@ -59,7 +60,7 @@ public class MenuPasiente extends JFrame {
         botonGuardar = new JButton("Guardar");
         
 
-        estiloTexto = new Font("cooper black", 0, 24);
+        estiloTexto = new Font("Roboto", Font.PLAIN, 12);
         crearPanel();
         tituloVentana();
         JLabelSaludar();
@@ -72,6 +73,7 @@ public class MenuPasiente extends JFrame {
         panel = new JPanel();
         panel.setLayout(null);
         panel.setBackground(Color.BLACK);
+        panel.setBackground(new Color(0x9DABAF));
         this.getContentPane().add(panel);
 
     }
@@ -95,7 +97,7 @@ public class MenuPasiente extends JFrame {
             saludo.setLocation(200, 20);
             saludo.setText("Regístrate aquí");
             explicacion.setText("espacios obligatorios  * ");
-            explicacion.setFont(new Font("cooper black", 0, 18));
+            explicacion.setFont(new Font("Roboto", Font.PLAIN, 12));
             explicacion.setBounds(50, 55, 300, 40);
             panel.add(explicacion);
             panel.add(saludo);
@@ -117,7 +119,7 @@ public class MenuPasiente extends JFrame {
                  * estas estiqueas ya estan creasdas en un vector
                  */
                 this.vectorDatosIngreso[i] = new JLabel(VECTORMENDAJES[i]);
-                this.vectorDatosIngreso[i].setFont(new Font("cooper black", 0, 15));
+                this.vectorDatosIngreso[i].setFont(new Font("Roboto", Font.PLAIN, 12));
                 this.vectorDatosIngreso[i].setBounds(50, 100 + (i * 40), 200, 40);
                 panel.add(this.vectorDatosIngreso[i]);
 
@@ -125,7 +127,7 @@ public class MenuPasiente extends JFrame {
                  * casillas para ingresar datos 
                  */
                 this.datosJTextField[i]=new JTextField(VECTORDATOSMENSAJE[i]);
-                this.datosJTextField[i].setFont(new Font("cooper black", 0, 15));
+                this.datosJTextField[i].setFont(new Font("Roboto", Font.PLAIN, 15));
                 this.datosJTextField[i].setBounds(200, 100+(i*40), 300, 30);
                 panel.add(this.datosJTextField[i]);
             }
@@ -146,7 +148,7 @@ public class MenuPasiente extends JFrame {
         if (Loguin.getRegistrar()) {
 
         } else {
-            Color colorFondo = new Color(238, 238, 238);
+            Color colorFondo = new Color(0x9DABAF);
             /*
              * boton he imgenen del boton elminar
              */

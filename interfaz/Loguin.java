@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.awt.Font;
 
@@ -84,6 +86,7 @@ public class Loguin extends JFrame {
 
     private void JPanelLoguin() {
         panelLoguin = new JPanel();
+        panelLoguin.setBackground(new Color(0x9DABAF));
         panelLoguin.setLayout(null);
         this.getContentPane().add(panelLoguin);
         // panelLoguin.setBackground(Color.BLACK);
@@ -91,10 +94,12 @@ public class Loguin extends JFrame {
     }
 
     private void etiquetaLoguin() {
-        estiloTexto = new Font("cooper black", 0, 18);
+        estiloTexto = new Font("Roboto", Font.PLAIN, 18);
         // icono de loguin
+        Path imagePath = Paths.get("imagenes", "loguin.png");
+        String imagePathString = imagePath.toAbsolutePath().toString();
         etiquetaLoguin = new JLabel();
-        imagenLoguin = new ImageIcon("carga.png");
+        imagenLoguin = new ImageIcon(imagePathString);
         etiquetaLoguin.setBounds(120, 30, 150, 180);
 
         etiquetaLoguin.setIcon(new ImageIcon(imagenLoguin.getImage().getScaledInstance(etiquetaLoguin.getWidth(),
@@ -105,10 +110,12 @@ public class Loguin extends JFrame {
         // estiqueta de descripcion
         if (Menu.getControlMenu() == 1) {
             etiquetaInstrucion = new JLabel("Ingresa nombres y contraseña");
+            etiquetaInstrucion.setFont(estiloTexto);
             etiquetaInstrucion.setBounds(60, 240, 280, 30);
         }
         if (Menu.getControlMenu() == 2) {
             etiquetaInstrucion = new JLabel("Ingresa nombres y cedula");
+            etiquetaInstrucion.setFont(estiloTexto);
             etiquetaInstrucion.setBounds(72, 240, 280, 30);
         }
         etiquetaInstrucion.setFont(estiloTexto);
@@ -118,7 +125,7 @@ public class Loguin extends JFrame {
 
     private void ingresoDatos() {
 
-        estiloTexto = new Font("cooper black", 0, 10);
+        estiloTexto = new Font("Roboto", 0, 10);
         input = new JTextField("nombres completos...");
         input.setBounds(110, 300, 200, 30);
         input.setFont(estiloTexto);
@@ -129,7 +136,9 @@ public class Loguin extends JFrame {
         panelLoguin.add(clave);
 
         // etiqueta he imagen de input
-        iconLoguin = new ImageIcon("iconLogin.jpg");
+        Path imagePath = Paths.get("imagenes", "iconLogin.jpg");
+        String imagePathString = imagePath.toAbsolutePath().toString();
+        iconLoguin = new ImageIcon(imagePathString);
         etiqueraIconLoguin = new JLabel();
         etiqueraIconLoguin.setBounds(75, 300, 30, 30);
 
@@ -138,7 +147,9 @@ public class Loguin extends JFrame {
         panelLoguin.add(etiqueraIconLoguin);
 
         // etiqueta he imagen contraseña
-        candado = new ImageIcon("candado.png");
+        Path imagePathC = Paths.get("imagenes", "candado.png");
+        String imagePathStringC = imagePathC.toAbsolutePath().toString();
+        candado = new ImageIcon(imagePathStringC);
         etiquetaCandado = new JLabel();
         etiquetaCandado.setBounds(75, 350, 30, 30);
 
@@ -148,8 +159,8 @@ public class Loguin extends JFrame {
     }
 
     private void botonIngreso() {
-        estiloTexto = new Font("cooper black", 0, 15);
-        Color color = new Color(39, 59, 122);
+        estiloTexto = new Font("Roboto", 0, 16);
+        Color color = new Color(126, 132 , 242);
 
         botonIngreso = new JButton("Ingresar");
         botonIngreso.setBounds(125, 400, 150, 40);
@@ -162,12 +173,12 @@ public class Loguin extends JFrame {
     }
 
     private void botonNuevoRegistro() {
-        estiloTexto = new Font("cooper black", 0, 10);
-        Color colorFondo = new Color(238, 238, 238);
-        Color color = new Color(39, 59, 122);
+        estiloTexto = new Font("Roboto", 0, 15);
+        Color colorFondo = new Color(0x9DABAF);
+        Color color = new Color(126, 132 , 242);
 
         nuevoRegistro = new JButton("Registrarme");
-        nuevoRegistro.setBounds(150, 450, 100, 30);
+        nuevoRegistro.setBounds(130, 450, 130, 30);
         nuevoRegistro.setForeground(color);
         nuevoRegistro.setBackground(colorFondo);
         nuevoRegistro.setBorderPainted(false);
