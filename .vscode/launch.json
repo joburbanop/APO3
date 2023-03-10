@@ -6,43 +6,17 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch Interfaz",
+            "name": "Interfaz",
             "request": "launch",
             "mainClass": "Interfaz",
             "projectName": "miCitaMedica_8627a7ba"
         },
         {
             "type": "java",
-            "name": "Launch Java Program",
-            "request": "launch",
-            "mainClass": ""
-        },
-        {
-            "type": "java",
             "name": "Launch Interfaz",
             "request": "launch",
             "mainClass": "Interfaz",
-            "projectName": "miCitaMedica_75760c7e"
-        },
-        {
-            "type": "java",
-            "name": "Launch Test",
-            "request": "launch",
-            "mainClass": "Test",
-            "projectName": "miCitaMedica_75760c7e"
-        },
-        {
-            "type": "java",
-            "name": "Launch Test",
-            "request": "launch",
-            "mainClass": "miCitaMedica.interfaz.Test",
-            "projectName": ""
-        },
-        {
-            "type": "java",
-            "name": "Launch Current File",
-            "request": "launch",
-            "mainClass": "${file}"
+            "projectName": "miCitaMedica"
         }
     ]
 }

@@ -1,3 +1,4 @@
+package mundo;
 
 /*
  * es la abstraccion tanto de pasientes como de doctores 
@@ -39,6 +40,10 @@ public abstract class Usuario {
         this.apellido = null;
     }
 
+    public Usuario()
+    {
+       
+    }
     public static int getId() {
         return id;
     }

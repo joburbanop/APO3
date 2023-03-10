@@ -1,0 +1,43 @@
+			BASE DE DATOS PARA UN HOSPITAL (POR PASIENTE DOCTOR)
+		DIAGRAMA ER: CITAS MEDICAS PASIENTE DOCTOR 
+	
+    -Primer paso: Identificar las entidades
+    	como bien ya sabemos las entidades pueden ser concretas o abtractas, entonces las idneitdades de nuestro proyecto serna.
+    	
+    		- usuarios,  pues es el contenido relevante de nuestro proyecto 
+    		- pasiente, doctor 
+    		- estado
+    		- obervaciones, un pasente puede dejar comentarios sobre un doctor
+    		- habitacion, si el pasiente esta hospitalizado estara en una habitacion.
+    		
+    		 
+    -Segundo paso: Pensar en los atributos 
+
+		- en el caso de usuarios, estos tendran.
+			- nombres
+			- apellidos
+			- cedula
+			- numero telefonico
+			- tipo de sangre
+			- edad
+			- descripcion corta del pasiente o contenido 
+		
+		
+		- rol categoria corresponde a el rol y especialidad que tenga el doctor
+			- doctor
+			- pasiente
+		
+		- observasiones
+			- contenido
+			- pasiente
+			- doctor
+			
+		- habitacion 
+			- numero habitacion (id)
+			- numero pasientes	
+			
+		- estado 
+			- activo
+			- inactivo	
+			- hospitalizado
+			- sin hospitalizar 

@@ -1,36 +1,70 @@
+package mundo;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class BaseDeDatos {
     /*----------------------------------
     * Atributos
     *------------------------------*/
     // arreglos dinamicos
-    private ArrayList<Doctor> doctores = new ArrayList<>();
+    private ArrayList<Doctor> doctores = new ArrayList();
 
-    private ArrayList<Pasiente> pasientes = new ArrayList<>();
+    public ArrayList<Pasiente> pasientes = new ArrayList();
+
+    private static int numeroPasiente=0;
+
+    public ArrayList<Doctor> getDoctores() {
+        return doctores;
+    }
+
+
+
+
+    public ArrayList<Pasiente> getPasientes() {
+        return pasientes;
+    }
+
+
+
+
 
     /*-----------------------------
      * Metodos
      *---------------------------*/
-    public ArrayList<Doctor> baseDoctores() {
-        doctores.add(new Doctor("jonathan Burbano ", null, "12345678"));
-        doctores.add(new Doctor("keren  ", null, "87654321"));
-        doctores.add(new Doctor("rocio ", null, "19733791"));
-        return doctores;
+    public BaseDeDatos( String nombre, String especialidad, String clave)
+    {
+        doctores.add(new Doctor(nombre, especialidad, clave));
+    }
+    
+    
+
+    public BaseDeDatos()
+    {
+       
+    }
+   
+
+   
+    public void agregarPasiente (Pasiente pasiente)
+    {
+        numeroPasiente++;
+        System.out.println(pasientes.listIterator());
+        pasientes.add(pasiente);
+        System.out.println("tamaño de base pasiente " +pasientes.size());
+        for (int i = 0; i < pasientes.size(); i++) {
+            System.out.println("pasiente en la posicion 0 "+pasientes.get(i).getCedula());
+        }          
+      
+        
+        System.out.println(numeroPasiente);
     }
 
-    public ArrayList<Pasiente> basePasientes() {
-        pasientes.add(new Pasiente("David Santiago ", "santi@gamil.com", "O+", "1086363979"));
-        pasientes.add(new Pasiente("ernesto  ", "ernesto@gamil.com", "O-", "1086363777"));
-        pasientes.add(new Pasiente("Jonathan Camilo", "joburbanop589@gmail.com", "A+", "12345678"));
-        return pasientes;
-    }
 
-    public void agregarDoctore(ArrayList<Doctor> doctor) {
-        this.doctores = doctor;
-    }
 
-    public void agrgarPasiente(ArrayList<Pasiente> pasientes) {
-        this.pasientes = pasientes;
+
+    public static int getNumeroPasiente() {
+        return numeroPasiente;
     }
+    
+    
 }

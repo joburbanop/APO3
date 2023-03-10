@@ -1,29 +1,40 @@
 
+import mundo.*;
+
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import java.awt.Font;
 import java.awt.Image;
 
+/*
+ * estulizado tanto para registrar como adminitrar el pasiente 
+ */
 public class MenuPasiente extends JFrame {
     /*----------------------------------
     * Atributos
     *------------------------------*/
-    private JLabel saludo, explicacion, vectorDatosIngreso[], elimnarJLabel, guradarJLabel;
+    private JLabel saludo, explicacion, vectorDatosIngreso[];
     private ImageIcon imagenEliminar, imagenGuardar;
     private JPanel panel;
     private Font estiloTexto;
-    private JTextField datosJTextField;
+    private JTextField datosJTextField[];
     private JButton botonEliminar, botonGuardar;
     public final static String[] VECTORMENDAJES = { "Nombres * ", "Apellidos * ", "Email * ", "Tipo de sangre *",
-            "Cedula * ", "Peso ", "Altura ", "Telefono" };
-
+            "Cedula * ", "Peso ", "Altura ", "Telefono *" };
+    public final static String[] VECTORDATOSMENSAJE = { "Nombres... ", "Apellidos... ", "example@gmail.com",
+            "Tipo de sangre...",
+            "Cedula...", "Peso kg", "Altura mts", "Telefono..." };
     /*-----------------------------
      * Metodos
      *---------------------------*/
@@ -41,12 +52,12 @@ public class MenuPasiente extends JFrame {
         saludo = new JLabel();
         explicacion = new JLabel();
         vectorDatosIngreso = new JLabel[8];
+        datosJTextField = new JTextField[8];
         imagenEliminar = new ImageIcon("supprimer.png");
         imagenGuardar = new ImageIcon("5673974.png");
-        elimnarJLabel = new JLabel();
-        guradarJLabel = new JLabel();
         botonEliminar = new JButton("Borrar");
         botonGuardar = new JButton("Guardar");
+        
 
         estiloTexto = new Font("cooper black", 0, 24);
         crearPanel();
@@ -60,7 +71,7 @@ public class MenuPasiente extends JFrame {
     private void crearPanel() {
         panel = new JPanel();
         panel.setLayout(null);
-        // panel.setBackground(Color.BLACK);
+        panel.setBackground(Color.BLACK);
         this.getContentPane().add(panel);
 
     }
@@ -69,7 +80,7 @@ public class MenuPasiente extends JFrame {
         if (Loguin.getRegistrar()) {
             super.setTitle("Menu pasiente");
         } else {
-            super.setTitle("Menu Registrar pasiente");
+            super.setTitle("Registrar pasiente");
         }
 
     }
@@ -96,34 +107,70 @@ public class MenuPasiente extends JFrame {
         if (Loguin.getRegistrar()) {
 
         } else {
+            /*
+             * con este ciclo creamos todos los JLabel para
+             * su ingreso en pantalla 
+             */
             for (int i = 0; i < VECTORMENDAJES.length; i++) {
+                /*
+                 * las etiquetas de que datos se debe ingresar 
+                 * estas estiqueas ya estan creasdas en un vector
+                 */
                 this.vectorDatosIngreso[i] = new JLabel(VECTORMENDAJES[i]);
                 this.vectorDatosIngreso[i].setFont(new Font("cooper black", 0, 15));
                 this.vectorDatosIngreso[i].setBounds(50, 100 + (i * 40), 200, 40);
                 panel.add(this.vectorDatosIngreso[i]);
-                datosJTextField = new JTextField("ingresar datos ...");
-                datosJTextField.setBounds(200, 108 + (i * 40), 250, 30);
-                panel.add(datosJTextField);
 
+                /*
+                 * casillas para ingresar datos 
+                 */
+                this.datosJTextField[i]=new JTextField(VECTORDATOSMENSAJE[i]);
+                this.datosJTextField[i].setFont(new Font("cooper black", 0, 15));
+                this.datosJTextField[i].setBounds(200, 100+(i*40), 300, 30);
+                panel.add(this.datosJTextField[i]);
             }
 
         }
 
     }
 
+    /**
+     * metodo que crea los botones eleminar y guardar
+     * 
+     * @return
+     * 
+     * @param
+     * 
+     */
     private void imagenDatos() {
         if (Loguin.getRegistrar()) {
 
         } else {
-            elimnarJLabel.setBounds(120, 450, 60, 60);
-            elimnarJLabel.setIcon(new ImageIcon(imagenEliminar.getImage().getScaledInstance(elimnarJLabel.getWidth(),
-                    elimnarJLabel.getHeight(), Image.SCALE_SMOOTH)));
-            panel.add(elimnarJLabel);
+            Color colorFondo = new Color(238, 238, 238);
+            /*
+             * boton he imgenen del boton elminar
+             */
+            imagenEliminar = new ImageIcon("supprimer.png");
+            botonEliminar.setBounds(190, 450, 90, 80);
+            botonEliminar.setIcon(new ImageIcon(imagenEliminar.getImage().getScaledInstance(botonEliminar.getWidth(),
+                    botonEliminar.getHeight(), Image.SCALE_SMOOTH)));
+            botonEliminar.setBackground(colorFondo);
+            botonEliminar.setBorderPainted(false);
+            botonEliminar.setForeground(colorFondo);
+            panel.add(botonEliminar);
 
-            guradarJLabel.setBounds(320, 450, 60, 60);
-            guradarJLabel.setIcon((new ImageIcon(imagenGuardar.getImage().getScaledInstance(guradarJLabel.getWidth(),
-                    guradarJLabel.getHeight(), Image.SCALE_SMOOTH))));
-            panel.add(guradarJLabel);
+            /*
+             * boton gurdar he imegen
+             */
+            imagenGuardar = new ImageIcon("5673974.png");
+            botonGuardar.setBounds(390, 450, 80, 80);
+            botonGuardar.setIcon((new ImageIcon(imagenGuardar.getImage().getScaledInstance(botonGuardar.getWidth(),
+                    botonGuardar.getHeight(), Image.SCALE_SMOOTH))));
+            botonGuardar.setBackground(colorFondo);
+            botonGuardar.setBorderPainted(false);
+            botonGuardar.setForeground(colorFondo);
+
+            panel.add(botonGuardar);
 
         }
     }
@@ -132,8 +179,38 @@ public class MenuPasiente extends JFrame {
         if (Loguin.getRegistrar()) {
 
         } else {
-            botonEliminar.setBounds(190, 450, 100, 60);
-            panel.add(botonEliminar);
+            ActionListener botonAccion = new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent arg0) {
+                    if (arg0.getSource() == botonEliminar) {
+                        accionBotonEliminar();
+                        JOptionPane.showMessageDialog(null, datosJTextField[2].getText());
+                    }
+                    if (arg0.getSource() == botonGuardar) {
+    
+                          
+                        accionBotonGuardar(new Pasiente(datosJTextField[0].getText()+datosJTextField[1].getText(), datosJTextField[2].getText(),datosJTextField[3].getText(), datosJTextField[4].getText()));
+                        System.out.println("pasiente registrado");
+                        
+                    }
+
+                }
+            };
+            botonEliminar.addActionListener(botonAccion);
+            botonGuardar.addActionListener(botonAccion);
         }
+    }
+    public void accionBotonGuardar(Pasiente pasiente)
+    {
+        System.out.println("se llamo ");
+       Pasiente baseDeDatos= new Pasiente();
+       baseDeDatos.agregarPasiente(pasiente);
+        
+    
+    }
+    public void accionBotonEliminar()
+    {
+
     }
 }

@@ -1,5 +1,6 @@
 import java.awt.Image;
-
+import mundo.*;
+import javax.security.auth.PrivateCredentialPermission;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
 import java.awt.Font;
 
 import java.awt.Color;
@@ -27,13 +29,13 @@ public class Loguin extends JFrame {
     private JTextField input;
     private JButton botonIngreso, nuevoRegistro;
     private Font estiloTexto;
-    private BaseDeDatos autenticar;
     private static Pasiente pasieteLogeado;
     private static Doctor doctorLogueado;
     private int noReguistrado = 0;
     private MenuPasiente pasiente;
     private MenuDoctor doctor;
     private static boolean registrar = true;
+    
 
     /*-----------------------------
      * Metodos
@@ -55,6 +57,11 @@ public class Loguin extends JFrame {
         /*-----------------
          * Configuracion basica
          *----------------*/
+        /*
+         * estos condicionales nos permiten modificar el panel que se mostrara
+         * a el usuario, si es paciente o doctor asi para cada caso paritular
+         * comoin gresos de datos, y caracteristicas unicas de cada usuario
+         */
         if (Menu.getControlMenu() == 1) {
             super.setTitle("Doctor");
         }
@@ -172,14 +179,31 @@ public class Loguin extends JFrame {
      * verifica si el usuario se a registrado
      */
     public void autenticaion() {
-        autenticar = new BaseDeDatos();
-
+        /*
+         * este es un objeto de la clase llamadan base de datos
+         * el cual es una clase que se ha utilizado como prueba...
+         */
+       
+     
+        Pasiente pasiente=new Pasiente();
+        Doctor doctor=new Doctor();
+        /*
+         * se hace escucha del boton ingresar con el fin de verificar si esta
+         * o no resitrado el usuario 
+         */
         ActionListener oyenteBotonIngreso = new ActionListener() {
-
+            
             @Override
             public void actionPerformed(ActionEvent e) {
+                /*
+                 * si se precion el boton y se realiza el ciclo
+                 * for ech para verificar si existe en la base de datos el ususario
+                 * en el caso de estarlo, se encia se da acceso donde encontrara
+                 * las onpciones de adminitracion
+                 */
                 if (e.getSource() == botonIngreso && Menu.getControlMenu() == 1) {
-                    for (Doctor doctor : autenticar.baseDoctores()) {
+                    for (Doctor doctor : doctor.baseDoctores()) {
+                        doctor.getCedula();
 
                         if (doctor.getClave().equals(clave.getText())) {
                             noReguistrado = 1;
@@ -195,16 +219,30 @@ public class Loguin extends JFrame {
                     }
                 }
                 if (e.getSource() == botonIngreso && Menu.getControlMenu() == 2) {
-                    for (Pasiente pasiente : autenticar.basePasientes()) {
-
-                        if (pasiente.getCedula().equals(clave.getText())) {
+                   
+                    System.out.println("estamos dentro del ciclo");
+                    /*for (int i = 0; i < pasiente.basePasientes().size(); i++) {
+                        pasiente.basePasientes().get(i);
+                    }*/
+                    //ArrayList<Pasiente> copia = (ArrayList<Pasiente>) pasiente.basePasientes().clone();
+                    //System.out.println("tamaño array  copia "+copia.size());
+                    
+                    
+                      int tamaño = pasiente.basePasientes().size();
+                    for (int i=0; i<=tamaño;i++) {
+                        System.out.println("dentro del ciclo interno de loguin ");
+                        
+                       
+                        if (pasiente.basePasientes().get(i).getCedula().equals(clave.getText())) {
                             noReguistrado = 1;
-                            pasieteLogeado = pasiente;
+                            pasieteLogeado = pasiente.basePasientes().get(i);
                             ocultarLoguin();
                             mostrarMenuPasiente();
                             break;
                         }
+                        
                     }
+                    
                     if (noReguistrado == 0) {
                         JOptionPane.showMessageDialog(null, "Pasiente no registrado");
                     }
@@ -215,7 +253,9 @@ public class Loguin extends JFrame {
     }
 
     /**
-     * Reguistrar usuario
+     * Reguistrar usuario, cuando se precione en el boton registrar
+     * se hace un llamado a otro menu de registro donde se solicitaran todos los 
+     * datos necesarios para la existencia del pasiente o dosctor 
      */
     public void registrar() {
 
